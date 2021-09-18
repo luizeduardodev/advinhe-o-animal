@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-br">
+
+  <head>
+    <title>Game Random Images</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Descubra qual é o animal da imagem. Jogo online grátis. Se divirta com este jogo simples porém viciante.">
+
+    <link rel="canonical" href="">
+
+    <meta name="author" content="Luiz Eduardo">
+    <meta name="robots" content="index">
+    <meta name="googlebot" content="index">
+
+    <meta name="url" content="">
+    <meta name="keywords" content="">
+
+    <meta name="copyright" content="Luiz Eduardo 2021">
+    <meta http-equiv="content-language" content="pt-br">
+    <meta property="og:title" content="Game Random Images">
+    <meta property="og:description" content="Descubra qual é o animal da imagem. Jogo online grátis. Se divirta com este jogo simples porém viciante.">
+
+    <script src="https://kit.fontawesome.com/6e587148a4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="">
+  </head>
+
+  <body>
+    <div class="h1-points">
+      <h1>Descubra qual é o animal! &#129409;</h1>
+      <div class="pointes-box" id="pointes-box">
+        <span>Pontos:</span>
+        <span id="points">0</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="div">
+        <!-- Adicionar as imagens aqui -->
+        <img src="/assets/img/image-elefante.png" id="img-first">
+      </div>
+
+      <span id="message" class="message"></span>
+
+      <form id="form">
+        <input type="text" id="text" placeholder="Digite o nome do animal" autofocus>
+        <button id="btn-enviar">Enviar</button>
+      </form>
+
+      <div class="container-btn" id="container-btn">
+        <button id="btn-next-image" class="btn">Próxima imagem</button>
+
+        <button id="btn-start" class="btn" onclick="addImageIntoDOM()">iniciar o jogo</button>
+
+        <button id="btn-end" class="btn">Finalizar o jogo</button>
+
+        <button id="btn-about" class="btn">Sobre o jogo</button>
+      </div>
+    </div>
+
+    <script src="/assets/js/index.js"></script>
+  </body>
+
+</html>
