@@ -1,16 +1,18 @@
-const div = document.getElementById("div");
+const changeBackgroundImages = document.getElementById("change-background-images");
+const imgFirst = document.getElementById("first-image");
+const message = document.getElementById("result-message");
+const containerPointsDelete = document.getElementById("container-points-delete");
+let points = document.getElementById("points");
 const form = document.getElementById("form");
 const btnEnd = document.getElementById("btn-end");
 const btnAbout = document.getElementById("btn-about");
-const imgFirst = document.getElementById("img-first");
 const btnNext = document.getElementById("btn-next-image");
 const btnStart = document.getElementById("btn-start");
-const message =  document.getElementById("message");
-const containerPointsDelete = document.getElementById("container-points-delete");
-let points = document.getElementById("points");
-let span = document.createElement("span");
 
-const arrayImagesAnimals = [
+let span = document.createElement("span");
+const btnDelete = document.createElement("span");
+
+const VectorWithImagesOfAnimals = [
     `<img src="/assets/img/img-animals/imagem-coelho.png" data-name="Coelho" data-name2="coelho" alt="Imagem Coelho">`,
     `<img src="/assets/img/img-animals/imagem-elefante.png" data-name="Elefante" data-name2="elefante" alt="Imagem Elefante">`,
     `<img src="/assets/img/img-animals/imagem-gato.png" data-name="Gato" data-name2="gato" alt="Imagem Gato">`,
@@ -24,7 +26,7 @@ const arrayImagesAnimals = [
 
 const invisibleBtnForm = () => {
     form.style.display = "none";
-    btnEnd.style.display = "none"; 
+    btnEnd.style.display = "none";
     btnNext.style.display = "none";
 }
 invisibleBtnForm();
@@ -37,13 +39,13 @@ const visibleFormBtn = () => {
     imgFirst.style.display = "none";
 }
 
-const getRemoveAccentsName = (input) => {
+const getNamesWithAccentsRemoved = (input) => {
     const input2 = input.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     return input2;
 }
 
 const getRandomNumber = () => {
-    const num = Math.floor(Math.random() * arrayImagesAnimals.length);
+    const num = Math.floor(Math.random() * VectorWithImagesOfAnimals.length);
     return num;
 }
 
@@ -51,105 +53,112 @@ const getEmptyMessage = () => {
     message.innerHTML = "";
 }
 
-const addImageIntoDOM = () => {
-    span.innerHTML = `${arrayImagesAnimals[getRandomNumber()]}`;
-    div.append(span);
+const AddImageInDOM = () => {
+    span.innerHTML = `${VectorWithImagesOfAnimals[getRandomNumber()]}`;
+    changeBackgroundImages.append(span);
 
     const filhoSpan = span.querySelector("img");
-    const getAtributeAnimal1 = filhoSpan.getAttribute("data-name");
-    const getAtributeAnimal2 = filhoSpan.getAttribute("data-name2");
 
-    checkAnimalNameSubmit(getAtributeAnimal1, getAtributeAnimal2);
+    const GetAttributeOfAnimalOne = filhoSpan.getAttribute("data-name");
+    const GetAttributeOfAnimalTwo = filhoSpan.getAttribute("data-name2");
+
+    CheckTheAnimalsName(GetAttributeOfAnimalOne, GetAttributeOfAnimalTwo);
 
     visibleFormBtn();
 }
 
 const nextImage = () => {
+    let input = document.getElementById("text").value = "";
     getEmptyMessage();
     btnNext.style.display = "none";
+    form.style.display = "flex";
 
     const filhoSpan = span.querySelector("img");
     filhoSpan.remove();
 
-    span.innerHTML = `${arrayImagesAnimals[getRandomNumber()]}`;
-    div.append(span);
+    span.innerHTML = `${VectorWithImagesOfAnimals[getRandomNumber()]}`;
+    changeBackgroundImages.append(span);
 
     const imgSpan = span.querySelector("img");
-    const getNameAtribute = imgSpan.getAttribute("data-name");
-    const getNameAtribute2 = imgSpan.getAttribute("data-name2");
 
-    checkAnimalNameSubmit(getNameAtribute, getNameAtribute2);
+    const GetAttributeOfAnimalOne = imgSpan.getAttribute("data-name");
+    const GetAttributeOfAnimalTwo = imgSpan.getAttribute("data-name2");
+
+    CheckTheAnimalsName(GetAttributeOfAnimalOne, GetAttributeOfAnimalTwo);
 }
 
-const checkAnimalNameSubmit = (dataName1, dataName2) => {
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+const CheckTheAnimalsName = (dataName1, dataName2) => {
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); //Não deixar o navegador recarregar quando der o submit;
 
         let input = document.getElementById("text").value;
-        input = getRemoveAccentsName(input);
+        input = getNamesWithAccentsRemoved(input); //removendo os acentos dos texto;
 
         const inputCondicao1 = input === dataName1;
         const inputCondicao2 = input === dataName2;
 
-        if(input === ""){
-            message.innerText = "Por favor, preencha o campo!";
-        }else if(inputCondicao1 || inputCondicao2){
-            message.innerHTML = `Parabéns, você acertou! o animal se chama ${input}!`;
+        if (input === "") {
+            message.textContent = "Por favor, preencha o campo!";
+        } else if (input.indexOf(" ") > -1) {
+            message.textContent = "Por favor, retire o espaço no campo para continuar";
+        } else if (inputCondicao1 || inputCondicao2) {
+            message.textContent = `Parabéns, você acertou! o animal se chama ${input}!`;
             btnNext.style.display = "flex";
-            document.getElementById("text").value = "";
+            form.style.display = "none";
             addPointsDOM();
-        }else{
-            message.innerHTML = "Nome errado! Por favor, tente novamente";
+            // document.getElementById("text").value = "";
+        } else {
+            message.textContent = "Nome errado! Por favor, tente novamente";
         }
     });
 }
 
 const addPointsDOM = () => {
     let contador = 1;
-    
+
     let getPontoLocalStorage = localStorage.getItem("ponto");
     let getContLocalStorage = localStorage.getItem("contador");
-    
-    if(getPontoLocalStorage >= 1){
+
+    if (getPontoLocalStorage >= 1) {
         points.innerHTML = `${++getPontoLocalStorage}`;
         contador += parseInt(getContLocalStorage);
         savePointsLocalStorage(contador);
-    }else{
+    } else {
         points.innerHTML = `${contador}`;
         savePointsLocalStorage(contador);
         btnDeletee();
     }
 }
 
-const savePointsLocalStorage = (contador) => {
-    localStorage.setItem("ponto", contador);
-    localStorage.setItem("contador", contador);
-}
-
 const localStorageIntoDOM = () => {
     points.innerHTML = localStorage.ponto;
-    
-    if(points.innerHTML == "undefined"){
+
+    if (points.innerHTML == "undefined") {
         points.innerHTML = 0;
     }
 }
 localStorageIntoDOM();
 
-const btnDeletee = () => {
-    const btnDelete = document.createElement("span");
+const savePointsLocalStorage = (contador) => {
+    localStorage.setItem("ponto", contador);
+    localStorage.setItem("contador", contador);
+}
 
-    if(localStorage.ponto >= 1){
-        btnDelete.innerHTML = `<button id="delete-points" class="delete-points show-btn" onClick="deletePoints()">Deletar pontos</button>`;
+const btnDeletee = () => {
+
+    if (localStorage.ponto >= 1) {
+        btnDelete.innerHTML = `<button id="btn-delete-points" class="btn-delete-points" onClick="deletePoints()">Deletar pontos</button>`;
         containerPointsDelete.append(btnDelete);
-    }else{
-        btnDelete.remove();
     }
 }
 btnDeletee();
 
 const deletePoints = () => {
-    localStorage.ponto = 0;
-    localStorage.contador = 0;
-    points.innerHTML = 0;
+    localStorage.clear();
+    points.textContent = 0;
+    btnDelete.remove();
+}
+
+const endGame = () => {
     document.location.reload(true);
 }
