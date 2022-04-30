@@ -1,312 +1,307 @@
 /* Reset */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 100%;
+    font-family: sans-serif;
 }
-img{
+
+img {
     max-width: 100%;
 }
-html{
+
+html {
     -webkit-tap-highlight-color: transparent;
 }
+
 /* Header */
-#header{
+#header {
     width: 100%;
-    position: fixed;
     padding: 15px;
+    transition: all 0.15s ease;
     background-color: #ED1E24;
-    z-index: 10000;
 }
-#header .container-header{
+
+#header .header-container {
+    width: 100%;
     max-width: 980px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-#header .container-header h1{
-    color: white;
-    font-family: sans-serif;
+
+#header .header-container .header-container-title {
     font-size: 1.3rem;
-    padding: 10px;
-    cursor: pointer;
-    animation: jumpAnimationH1 3s infinite;
+    color: white;
 }
-@keyframes jumpAnimationH1{
-    0%{
-        transform: translateY(0%);
-    }
-    25%{
-        transform: translateY(10%);
-    }
-    50%{
-        transform: translateY(0%);
-    }
-    75%{
-        transform: translateY(-10%);
-    }
-    100%{
-        transform: translateY(0%);
-    }
-}
-#header .container-header .container-points-delete{
+
+#header .header-container .header-container-points-delete {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
 }
-#header .container-header .container-points-delete .pointes-box{
+
+#header .header-container .header-container-points-delete .container-points-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 2px;
-    background-color: white;
     gap: .5rem;
-    padding: 8px 10px;
+    padding: 5px;
+    border-radius: 1px;
+    background-color: white;
 }
-#header .container-header .container-points-delete .pointes-box span{
-    color: black;
+
+#header .header-container .header-container-points-delete .container-points-box span {
     font-size: 1rem;
-    font-family: sans-serif;
 }
-#header .container-header .container-points-delete .delete-points{
-    padding: 8px 10px;
-    font-family: sans-serif;
+
+#header .header-container .header-container-points-delete .btn-delete-points {
+    padding: 5px;
     font-size: 1rem;
     background-color: white;
-    border-radius: 2px;
-    transition: .3s;
+    border-radius: 1px;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
 }
-#header .container-header .container-points-delete .delete-points:hover{
+
+#header .header-container .header-container-points-delete .btn-delete-points:hover {
     background-color: black;
     color: white;
 }
-/* Section */
-#section{
+
+/* Main section */
+#main-section {
     background-image: url(/assets/img/Background/Background-min.jpg);
-    background-position: center;
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 91.1vh;
+    position: relative;
 }
-#section::before{
-    content: '';
+
+#main-section::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 91.1vh;
     background-color: rgba(0, 0, 0, 0.7);
 }
-#section .container-section{
+
+#main-section .main-section-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 91.1vh;
     max-width: 980px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#section .container-section .container{
+
+#main-section .main-section-container .main-section-general-container {
     width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin-top: 60px;
-    padding: 10px;
+    align-items: center;
 }
-#div{
+
+#main-section .main-section-container .main-section-general-container .change-background-images {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#img-first{
+
+#main-section .main-section-container .main-section-general-container .change-background-images #first-image {
     width: 497px;
-    transition: .3s;
     margin-bottom: 20px;
-    cursor: pointer;
-    animation: animationImgFirst infinite 5s;
 }
-@keyframes animationImgFirst{
-    0%{
-        transform: rotate(0deg);
-    }
-    25%{
-        transform: rotate(2deg);
-    }
-    50%{
-        transform: rotate(0deg);
-    }
-    75%{
-        transform: rotate(-2deg);
-    }
-    100%{
-        transform: rotate(0deg);
-    }
-}
-#section .container-section .container
-.container span{
+
+#main-section .main-section-container .main-section-general-container span {
     display: flex;
     justify-content: center;
 }
-#section .container-section .container span img{
+
+#main-section .main-section-container .main-section-general-container span img {
     width: 300px;
     margin-bottom: 20px;
     border-radius: 5px;
 }
-#section .container-section .container .message{
+
+#main-section .main-section-container .main-section-general-container .result-message {
     font-size: 1.2rem;
-    color: white;
+    height: 10px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: sans-serif;
     text-align: center;
+    color: white;
 }
+
 /* Form */
-#form{
+#main-section .main-section-container .main-section-general-container #form {
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-#form input{
+
+#main-section .main-section-container .main-section-general-container #form input {
     width: 30%;
-    border: none;
-    outline: none;
-    color: white;
     padding: 10px;
-    font-family: sans-serif;
     font-size: 1rem;
-    color: black;
-    border-radius: 3px;
+    border-radius: 1px;
+    outline: none;
+    border: none;
 }
-#form button{
+
+#main-section .main-section-container .main-section-general-container #form button {
     width: 15%;
+    font-size: 1rem;
+    border-radius: 1px;
+    transition: all .3s ease;
+    cursor: pointer;
     border: none;
     background-color: white;
-    font-family: sans-serif;
-    font-size: 1rem;
-    transition: .3s;
-    border-radius: 3px;
-    cursor: pointer;
 }
-#form button:hover, #section .container-section .container .container-btn .btn:hover{
+
+#main-section .main-section-container .main-section-general-container #form button:hover,
+#main-section .main-section-container .main-section-general-container .container-btn .btn:hover {
     background-color: black;
     color: white;
 }
+
 /* Buttons */
-#section .container-section .container .container-btn{
+#main-section .main-section-container .main-section-general-container .container-btn {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem;
 }
-#section .container-section .container .container-btn .btn{
+
+#main-section .main-section-container .main-section-general-container .container-btn .btn {
+    width: 20%;
     display: flex;
     justify-content: center;
-    width: 30%;
-    border: none;
-    background-color: white;
-    color: black;
-    font-family: sans-serif;
-    font-size: 1.2rem;
-    padding: 10px;
-    border-radius: 3px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 1px;
     cursor: pointer;
-    transition: .3s;
+    border: none;
+    transition: all .3s ease;
+    color: black;
+    background-color: white;
 }
+
 /* Footer */
-#footer{
+#footer {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     background-color: #ED1E24;
 }
-#footer span{
-    color: white;
-    font-family: sans-serif;
+
+#footer span {
     font-size: 1rem;
     margin-bottom: 5px;
-}
-#footer a{
     color: white;
 }
 
-@media screen and (max-width: 375px){
-     /* Header */
-     #header .container-header{
+#footer a {
+    color: white;
+}
+
+@media screen and (max-width: 375px) {
+
+    /* Header */
+    #header .container-header {
         flex-direction: column;
     }
-     #header .container-header h1{
+
+    #header .container-header h1 {
         font-size: 1.2rem;
         padding: 0;
         margin-bottom: 10px;
     }
-    #header .container-header .container-points-delete{
+
+    #header .container-header .container-points-delete {
         gap: .5rem;
     }
-    #header .container-header .container-points-delete .pointes-box{
+
+    #header .container-header .container-points-delete .pointes-box {
         gap: .4rem;
         padding: 8px;
     }
-    #header .container-header .container-points-delete .delete-points{
+
+    #header .container-header .container-points-delete .delete-points {
         padding: 8px;
     }
+
     /* Section */
-    #section .container-section .container{
+    #section .container-section .container {
         width: 95%;
         margin-top: 70px;
     }
-    #img-first{
+
+    #img-first {
         width: 400px;
     }
-    #section .container-section .container span img{
+
+    #section .container-section .container span img {
         width: 220px;
         margin-bottom: 10px;
     }
-    #section .container-section .container .message{
+
+    #section .container-section .container .message {
         font-size: 1rem;
         margin-bottom: 10px;
     }
+
     /* Form */
-    #form{
+    #form {
         margin-bottom: 20px;
     }
-    #form input{
+
+    #form input {
         width: 60%;
-        padding: 8px; 
+        padding: 8px;
         font-size: 0.9rem;
     }
-    #form button{
+
+    #form button {
         width: 40%;
         font-size: 0.9rem;
     }
+
     /* Buttons */
-    #section .container-section .container .container-btn{
+    #section .container-section .container .container-btn {
         flex-wrap: nowrap;
         gap: 1rem;
     }
-    #section .container-section .container .container-btn .btn{
+
+    #section .container-section .container .container-btn .btn {
         width: 50%;
         font-size: 0.9rem;
         padding: 8px;
     }
+
     /* Footer */
-    #footer{
+    #footer {
         padding: 10px;
     }
-    #footer span, a{
+
+    #footer span,
+    a {
         font-size: 0.8rem;
     }
 }
