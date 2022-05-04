@@ -1,16 +1,18 @@
+//Variáveis Globais;
 const changeBackgroundImages = document.getElementById("change-background-images");
-const imgFirst = document.getElementById("first-image");
 const message = document.getElementById("result-message");
-const containerPointsDelete = document.getElementById("container-points-delete");
 let points = document.getElementById("points");
 const form = document.getElementById("form");
 const btnEnd = document.getElementById("btn-end");
-const btnAbout = document.getElementById("btn-about");
-const btnNext = document.getElementById("btn-next-image");
-const btnStart = document.getElementById("btn-start");
+let cont = 0;
 
+//Criando span's;
 let span = document.createElement("span");
 const btnDelete = document.createElement("span");
+
+//Criando Buttons;
+const btnStart = document.createElement("button");
+const btnNext = document.createElement("button");
 
 const VectorWithImagesOfAnimals = [
     `<img src="/assets/img/img-animals/imagem-coelho.png" data-name="Coelho" data-name2="coelho" alt="Imagem Coelho">`,
@@ -25,18 +27,17 @@ const VectorWithImagesOfAnimals = [
 ];
 
 const invisibleBtnForm = () => {
-    form.style.display = "none";
     btnEnd.style.display = "none";
-    btnNext.style.display = "none";
+    form.style.display = "none";
 }
 invisibleBtnForm();
 
 const visibleFormBtn = () => {
+    const btnAbout = document.getElementById("btn-about");
+
     form.style.display = "flex";
     btnEnd.style.display = "flex";
     btnAbout.style.display = "none";
-    btnStart.style.display = "none";
-    imgFirst.style.display = "none";
 }
 
 const getNamesWithAccentsRemoved = (input) => {
@@ -53,38 +54,69 @@ const getEmptyMessage = () => {
     message.innerHTML = "";
 }
 
-const AddImageInDOM = () => {
+const addButtonHtml = (texto, id, classe, btn, btnBefore, funBtn) => {
+    const containerBtn = document.getElementById("container-btn"); //Pegando o container dos buttons;
+    let textBtns = document.createTextNode(texto); //Criando os textos de forma dinamica dos buttons;
+
+    cont++;
+
+    if (cont > 2) {
+        textBtns = "";
+    }
+
+    btn.append(textBtns); //Colocando o texto no button;
+
+    btn.setAttribute("id", id); //Adicionando o id;
+    btn.classList = classe; //Adicionando a classe;
+
+    containerBtn.insertBefore(btn, btnBefore); //Inserindo o btn antes de outro btn;
+
+    btn.addEventListener("click", funBtn); //Adicionando o evento de click passando a função;
+}
+
+const removeButtonHtml = (btn) => {
+    btn.remove();
+}
+
+const addImgInSpan = () => {
+    btnNext.remove();
+
     span.innerHTML = `${VectorWithImagesOfAnimals[getRandomNumber()]}`;
     changeBackgroundImages.append(span);
 
-    const filhoSpan = span.querySelector("img");
+    const filhoSpan = span.firstChild;
 
     const GetAttributeOfAnimalOne = filhoSpan.getAttribute("data-name");
     const GetAttributeOfAnimalTwo = filhoSpan.getAttribute("data-name2");
 
     CheckTheAnimalsName(GetAttributeOfAnimalOne, GetAttributeOfAnimalTwo);
-
-    visibleFormBtn();
 }
 
-const nextImage = () => {
-    let input = document.getElementById("text").value = "";
-    getEmptyMessage();
-    btnNext.style.display = "none";
-    form.style.display = "flex";
+const AddImageInDOM = () => {
+    const imgFirst = document.getElementById("first-image");
+    imgFirst.remove(); //Remove a imagem principal;
 
-    const filhoSpan = span.querySelector("img");
+    addImgInSpan();
+
+    visibleFormBtn();
+
+    if (form.style.display == "flex") {
+        removeButtonHtml(btnStart);
+    }
+}
+
+addButtonHtml("Iniciar o jogo", "btn-start", "btn", btnStart, btnEnd, AddImageInDOM); //Colocando o btn start no html;
+
+const nextImage = () => {
+    btnNext.remove(); //removi o btnNext;
+    getEmptyMessage(); //Limpei a mensagem;
+    visibleFormBtn(); //Mostrei o input e btnEnd;
+    let input = document.getElementById("text").value = ""; //Limpando o imput;
+
+    const filhoSpan = span.firstChild;
     filhoSpan.remove();
 
-    span.innerHTML = `${VectorWithImagesOfAnimals[getRandomNumber()]}`;
-    changeBackgroundImages.append(span);
-
-    const imgSpan = span.querySelector("img");
-
-    const GetAttributeOfAnimalOne = imgSpan.getAttribute("data-name");
-    const GetAttributeOfAnimalTwo = imgSpan.getAttribute("data-name2");
-
-    CheckTheAnimalsName(GetAttributeOfAnimalOne, GetAttributeOfAnimalTwo);
+    addImgInSpan();
 }
 
 const CheckTheAnimalsName = (dataName1, dataName2) => {
@@ -103,10 +135,9 @@ const CheckTheAnimalsName = (dataName1, dataName2) => {
             message.textContent = "Por favor, retire o espaço no campo para continuar";
         } else if (inputCondicao1 || inputCondicao2) {
             message.textContent = `Parabéns, você acertou! o animal se chama ${input}!`;
-            btnNext.style.display = "flex";
-            form.style.display = "none";
+            addButtonHtml("Próxima imagem", "btn-next-image", "btn", btnNext, btnEnd, nextImage);
             addPointsDOM();
-            // document.getElementById("text").value = "";
+            form.style.display = "none";
         } else {
             message.textContent = "Nome errado! Por favor, tente novamente";
         }
@@ -144,7 +175,14 @@ const savePointsLocalStorage = (contador) => {
     localStorage.setItem("contador", contador);
 }
 
+const deletePoints = () => {
+    localStorage.clear();
+    points.textContent = 0;
+    removeButtonHtml(btnDelete);
+}
+
 const btnDeletee = () => {
+    const containerPointsDelete = document.getElementById("container-points-delete");
 
     if (localStorage.ponto >= 1) {
         btnDelete.innerHTML = `<button id="btn-delete-points" class="btn-delete-points" onClick="deletePoints()">Deletar pontos</button>`;
@@ -152,12 +190,6 @@ const btnDeletee = () => {
     }
 }
 btnDeletee();
-
-const deletePoints = () => {
-    localStorage.clear();
-    points.textContent = 0;
-    btnDelete.remove();
-}
 
 const endGame = () => {
     document.location.reload(true);
