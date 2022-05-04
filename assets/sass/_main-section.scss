@@ -1,0 +1,207 @@
+@use "mixins";
+@use "variables";
+
+/* Main section */
+#main-section {
+    background: url(/assets/img/background/Background-min.jpg) center/cover;
+    height: calc(100vh - 9vh);
+    position: relative;
+
+    @include mixins.mediaQuerry(425px) {
+        height: calc(100vh - 13vh);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 9vh);
+        background-color: rgba(0, 0, 0, 0.7);
+
+        @include mixins.mediaQuerry(425px) {
+            height: calc(100vh - 13vh);
+        }
+    }
+
+    .main-section-container {
+        @include mixins.limitCenterWidth;
+        @include mixins.displayFlex(flex, center, center);
+        height: calc(100vh - 9vh);
+        position: relative;
+
+        @include mixins.mediaQuerry(425px) {
+            height: calc(100vh - 13vh);
+        }
+
+        .main-section-general-container {
+            width: 100%;
+            @include mixins.displayFlex(flex, center, center);
+            flex-direction: column;
+
+            .change-background-images {
+                width: 100%;
+                @include mixins.displayFlex(flex, center, center);
+
+                @include mixins.mediaQuerry(425px) {
+                    width: 95%;
+                }
+
+                #first-image {
+                    @include mixins.configImg(497px, 20px);
+
+                    @include mixins.mediaQuerry(768px) {
+                        width: 490px;
+                    }
+
+                    @include mixins.mediaQuerry(425px) {
+                        width: 360px;
+                    }
+
+                    @include mixins.mediaQuerry(375px) {
+                        width: 310px;
+                    }
+
+                    @include mixins.mediaQuerry(320px) {
+                        width: 260px;
+                    }
+                }
+            }
+
+            span {
+                @include mixins.displayFlex(flex, center, center);
+
+                img {
+                    @include mixins.configImg(300px, 20px);
+                    border-radius: 5px;
+
+                    @include mixins.mediaQuerry(425px) {
+                        width: 250px;
+                    }
+
+                    @include mixins.mediaQuerry(375px) {
+                        width: 230px;
+                    }
+
+                    @include mixins.mediaQuerry(320px) {
+                        width: 200px;
+                    }
+                }
+            }
+
+            .result-message {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+                height: 10px;
+                font-weight: bold;
+                text-align: center;
+                color: variables.$color-white;
+
+                @include mixins.mediaQuerry(425px) {
+                    font-size: 1.1rem;
+                }
+
+                @include mixins.mediaQuerry(375px) {
+                    font-size: 1rem;
+                }
+
+                @include mixins.mediaQuerry(320px) {
+                    font-size: 0.9rem;
+                }
+            }
+
+            #form {
+                @include mixins.configImg(100%, 20px);
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+
+                @include mixins.mediaQuerry(425px) {
+                    width: 90%;
+                }
+
+                input {
+                    @include mixins.widthBorderRadiusFontSize(30%, 1rem, 1px);
+                    padding: 10px;
+                    outline: none;
+                    border: none;
+
+                    @include mixins.mediaQuerry(425px) {
+                        width: 70%;
+                        padding: 9px;
+                    }
+
+                    @include mixins.mediaQuerry(425px) {
+                        padding: 8px;
+                        font-size: 0.9rem;
+                    }
+
+                    @include mixins.mediaQuerry(320px) {
+                        font-size: 0.8rem;
+                    }
+                }
+
+                button {
+                    @include mixins.widthBorderRadiusFontSize(15%, 1rem, 1px);
+                    cursor: pointer;
+                    border: none;
+                    transition: all .3s ease;
+                    background-color: variables.$color-white;
+
+                    @include mixins.mediaQuerry(425px) {
+                        width: 35%;
+                    }
+
+                    @include mixins.mediaQuerry(375px) {
+                        font-size: 0.9rem;
+                        padding: 2px;
+                    }
+
+                    @include mixins.mediaQuerry(320px) {
+                        font-size: 0.8rem;
+                    }
+
+                    &:hover {
+                        @include mixins.padraoHover(black, variables.$color-white);
+                    }
+                }
+            }
+
+            .container-btn {
+                width: 100%;
+                @include mixins.displayFlex(flex, center, center);
+                flex-wrap: wrap;
+                gap: 1rem;
+
+                @include mixins.mediaQuerry(425px) {
+                    width: 95%;
+                }
+
+                .btn {
+                    @include mixins.widthBorderRadiusFontSize(20%, 1.1rem, 1px);
+                    display: flex;
+                    justify-content: center;
+                    padding: 5px;
+                    cursor: pointer;
+                    border: none;
+                    transition: all .3s ease;
+                    @include mixins.padraoHover(variables.$color-white, black);
+
+                    @include mixins.mediaQuerry(425px) {
+                        width: 40%;
+                        font-size: 1rem;
+                    }
+
+                    @include mixins.mediaQuerry(375px) {
+                        font-size: 0.9rem;
+                    }
+
+                    &:hover {
+                        @include mixins.padraoHover(black, variables.$color-white);
+                    }
+                }
+            }
+        }
+    }
+}

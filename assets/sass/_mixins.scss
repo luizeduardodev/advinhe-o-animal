@@ -1,0 +1,34 @@
+@mixin limitCenterWidth {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+@mixin displayFlex($display, $align, $justify) {
+    display: $display;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin configImg($width, $marginBotton) {
+    width: $width;
+    margin-bottom: $marginBotton;
+}
+
+@mixin widthBorderRadiusFontSize($width, $fontSize, $borderRadius) {
+    width: $width;
+    font-size: $fontSize;
+    border-radius: $borderRadius;
+}
+
+@mixin padraoHover($bgColor, $color) {
+    background-color: $bgColor;
+    color: $color;
+}
+
+// Media querry mixin;
+@mixin mediaQuerry($width: 0) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}

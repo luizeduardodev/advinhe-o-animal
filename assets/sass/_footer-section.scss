@@ -1,0 +1,33 @@
+@use "variables";
+@use "mixins";
+
+/* Footer */
+#footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    background-color: variables.$bg-color;
+
+    span {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: variables.$color-white;
+
+        @include mixins.mediaQuerry(375px) {
+            font-size: 0.9rem;
+        }
+    }
+
+    a {
+        color: variables.$color-white;
+
+        @include mixins.mediaQuerry(375px) {
+            font-size: 0.9rem;
+        }
+
+        @include mixins.mediaQuerry(320px) {
+            font-size: 0.8rem;
+        }
+    }
+}
