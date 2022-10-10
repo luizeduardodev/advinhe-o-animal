@@ -1,82 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
+    <head>
+        <title>Descubra qual é o animal!</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <title>Descubra qual é o animal!</title>
-  <meta charset="utf-8">
-  <!-- <meta name="description" content="Descubra qual é o animal da imagem. Se divirta com este jogo simples porém viciante."> -->
-  <!-- <link rel="canonical" href=""> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <!-- <meta name="author" content="Luiz Eduardo"> -->
-  <!-- <meta name="creator" content="Luiz Eduardo"> -->
-  <!-- <meta property="og:type" content="website"> -->
-  <!-- <meta property="og:title" content="Descubra qual é o animal!"> -->
-  <!-- <meta property="og:description" content="Descubra qual é o animal da imagem. Se divirta com este jogo simples porém viciante."> -->
-  <!-- <meta property="og:url" content=""> -->
-  <!-- <meta name="robots" content="index"> -->
-  <!-- <meta name="googlebot" content="index"> -->
+        <!-- Font awesome -->
+        <script src="https://kit.fontawesome.com/6e587148a4.js" crossorigin="anonymous"></script>
 
-  <!-- Font awesome -->
-  <script src="https://kit.fontawesome.com/6e587148a4.js" crossorigin="anonymous"></script>
+        <!-- styles -->
+        <link rel="stylesheet" href="./assets/css/style.min.css" />
+        <link rel="icon" href="./assets/img/img-principal/img-principal-1.png" />
+    </head>
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/style.min.css">
-  <link rel="icon" href="assets/img/img-principal/img-principal-1.png">
-</head>
+    <body>
+        <header id="header">
+            <div class="wrapper">
+                <h1 class="title">Acerte o nome e acumule pontos</h1>
 
-<body>
-  <header id="header">
-    <div class="header-container">
-      <h1 class="header-container-title">
-        Descubra qual é o animal
-      </h1>
+                <div id="container-points-and-button" class="container-points-and-button">
+                    <div class="container-points">
+                        <p>Pontuação:</p>
+                        <p id="score">0</p>
+                    </div>
+                    <!-- Btn-delete-points aparece aqui -->
+                </div>
+            </div>
+        </header>
 
-      <div id="container-points-delete" class="header-container-points-delete">
-        <div class="container-points-box">
-          <span>Pontuação:</span>
-          <span id="points">0</span>
-        </div>
-        <!-- Btn-delete-points aparece aqui -->
-      </div> <!-- Fim do container points delete -->
-    </div> <!-- Fim do header container -->
-  </header>
-  <!-- Fim do header -->
+        <main>
+            <section id="home-section">
+                <div class="wrapper">
+                    <div id="change-background-image" class="change-background-image">
+                        <!-- A imagem aleatória aparece aqui, no lugar da principal -->
+                        <img src="./assets/img/img-principal/img-principal-1.png" id="main-image" class="main-image" alt="Imagem inicial do jogo" />
+                    </div>
 
-  <section id="main-section">
-    <div class="main-section-container">
-      <div class="main-section-general-container">
-        <div id="change-background-images" class="change-background-images">
-          <img src="/assets/img/img-principal/img-principal-1.png" id="first-image" alt="Imagem inicial do jogo">
-          <!-- A imagem aleatória aparece aqui -->
-        </div> <!-- Fim da change background images -->
+                    <div id="result-message" class="result-message">
+                        <p id="result-message-p">
+                            <!-- O resultado aparece aqui -->
+                        </p>
+                    </div>
 
-        <span id="result-message" class="result-message">
-          <!-- O resultado aparece aqui -->
-        </span> <!-- Fim da result message -->
+                    <form id="form" class="form">
+                        <input type="text" id="text" placeholder="Digite o nome do animal" class="input" />
+                        <button id="btn-enviar" class="btn-enviar">Verificar resposta</button>
+                    </form>
 
-        <form id="form">
-          <input type="text" id="text" placeholder="Digite o nome do animal">
-          <button id="btn-enviar">Verificar resposta</button>
-        </form> <!-- Fim do form -->
+                    <div class="container-btn" id="container-btn">
+                        <button id="btn-end" class="btn" onclick="endGame()">Finalizar o jogo</button>
+                        <button id="btn-about" class="btn">Sobre o jogo</button>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-        <div class="container-btn" id="container-btn">
-          <!-- Butões aparecem aqui -->
-          <button id="btn-end" class="btn" onclick="endGame()">Finalizar o jogo</button>
-          <button id="btn-about" class="btn">Sobre o jogo</button>
-        </div> <!-- Fim da container btn-->
+        <footer id="footer">
+            <p>Feito com &hearts; por <strong>Luiz Eduardo</strong></p>
+        </footer>
 
-      </div> <!-- Fim da mains section general container -->
-    </div> <!-- Fim da main section container -->
-  </section><!-- Fim da main section -->
-
-  <footer id="footer">
-    <span>© 2022 Luiz Eduardo All rights reserved</span>
-    <a href='https://www.freepik.com/vectors/frame'>Frame vector created by brgfx - www.freepik.com</a>
-    <a href="https://www.freepnglogos.com/pics/animals">Animals from freepnglogos.com</a>
-  </footer> <!-- Fim do footer -->
-
-  <script src="/assets/js/index.js"></script>
-</body>
-
+        <script src="/assets/js/index.js"></script>
+    </body>
 </html>
