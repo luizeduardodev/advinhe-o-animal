@@ -1,80 +1,81 @@
 @use "variables";
 @use "mixins";
 
-/* Header */
 #header {
     width: 100%;
-    height: 9vh;
-    padding: 15px;
-    transition: all 0.15s ease;
+    padding: 2rem;
+
+    transition: 0.15s;
     background-color: variables.$bg-color;
 
-    @include mixins.mediaQuerry(425px) {
-        height: 13vh;
-    }
-
-    .header-container {
+    .wrapper {
         @include mixins.limitCenterWidth;
         @include mixins.displayFlex(flex, center, space-between);
+        text-align: center;
 
         @include mixins.mediaQuerry(1024px) {
             width: 95%;
-        }    
-
-        @include mixins.mediaQuerry(425px) {
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        &-title {
-            font-size: 1.3rem;
+        @include mixins.mediaQuerry(425px) {
+            gap: 0.8rem;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 2rem;
             color: variables.$color-white;
 
             @include mixins.mediaQuerry(768px) {
-                font-size: 1.2rem
+                font-size: 1.8rem;
             }
 
             @include mixins.mediaQuerry(425px) {
-                font-size: 1.1rem;
+                font-size: 1.7rem;
+            }
+
+            @include mixins.mediaQuerry(320px) {
+                font-size: 1.5rem;
             }
         }
 
-        &-points-delete {
+        .container-points-and-button {
             @include mixins.displayFlex(flex, center, center);
             gap: 1rem;
 
-            .container-points-box {
+            .container-points {
                 @include mixins.displayFlex(flex, center, center);
-                gap: .5rem;
-                padding: 5px;
-                border-radius: 1px;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+
                 background-color: variables.$color-white;
 
-                span {
-                    font-size: 1rem;
+                p {
+                    font-size: 1.7rem;
 
                     @include mixins.mediaQuerry(320px) {
-                        font-size: 0.9rem;
+                        font-size: 1.5rem;
                     }
                 }
             }
 
             .btn-delete-points {
-                padding: 5px;
-                font-size: 1rem;
-                border-radius: 1px;
+                font-size: 1.7rem;
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+
                 border: none;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                transition: 0.4s;
                 background-color: variables.$color-white;
 
                 @include mixins.mediaQuerry(320px) {
-                    font-size: 0.9rem;
+                    font-size: 1.5rem;
                 }
 
                 &:hover {
-                    background-color: black;
-                    color: variables.$color-white;
+                    @include mixins.padraoHover(#000, variables.$color-white);
                 }
             }
         }
