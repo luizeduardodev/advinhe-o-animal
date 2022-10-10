@@ -1,33 +1,25 @@
 @use "variables";
 @use "mixins";
 
-/* Footer */
 #footer {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    padding: 1rem;
+
     background-color: variables.$bg-color;
 
-    span {
-        font-size: 1rem;
-        margin-bottom: 5px;
+    p {
+        font-size: 1.6rem;
+
         color: variables.$color-white;
 
         @include mixins.mediaQuerry(375px) {
-            font-size: 0.9rem;
-        }
-    }
-
-    a {
-        color: variables.$color-white;
-
-        @include mixins.mediaQuerry(375px) {
-            font-size: 0.9rem;
+            font-size: 1.5rem;
         }
 
         @include mixins.mediaQuerry(320px) {
-            font-size: 0.8rem;
+            font-size: 1.4rem;
         }
     }
 }
