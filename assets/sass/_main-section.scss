@@ -1,71 +1,80 @@
-@use "mixins";
 @use "variables";
+@use "mixins";
 
-/* Main section */
-#main-section {
-    background: url(/assets/img/background/Background-min.jpg) center/cover;
-    height: calc(100vh - 9vh);
+#home-section {
+    width: 100%;
+    height: calc(100vh - 7rem);
+
     position: relative;
 
+    background-image: url("../img//background/Background2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
     @include mixins.mediaQuerry(425px) {
-        height: calc(100vh - 13vh);
+        height: calc(100vh - 9.8rem);
+    }
+
+    @include mixins.mediaQuerry(320px) {
+        height: calc(100vh - 9.2rem);
     }
 
     &::before {
         content: "";
+
+        width: 100%;
+        height: 100%;
+
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: calc(100vh - 9vh);
-        background-color: rgba(0, 0, 0, 0.7);
 
-        @include mixins.mediaQuerry(425px) {
-            height: calc(100vh - 13vh);
-        }
+        background-color: rgba(0, 0, 0, 0.7);
     }
 
-    .main-section-container {
+    .wrapper {
         @include mixins.limitCenterWidth;
         @include mixins.displayFlex(flex, center, center);
-        height: calc(100vh - 9vh);
+        flex-direction: column;
+
+        height: calc(100vh - 7rem);
+
         position: relative;
 
         @include mixins.mediaQuerry(425px) {
-            height: calc(100vh - 13vh);
+            height: calc(100vh - 9.8rem);
         }
 
-        .main-section-general-container {
+        @include mixins.mediaQuerry(320px) {
+            height: calc(100vh - 9.2rem);
+        }
+
+        .change-background-image {
             width: 100%;
             @include mixins.displayFlex(flex, center, center);
-            flex-direction: column;
 
-            .change-background-images {
-                width: 100%;
-                @include mixins.displayFlex(flex, center, center);
+            @include mixins.mediaQuerry(425px) {
+                width: 95%;
+            }
 
-                @include mixins.mediaQuerry(425px) {
-                    width: 95%;
+            .main-image {
+                @include mixins.configImg(49.7rem, 2rem);
+
+                @include mixins.mediaQuerry(768px) {
+                    width: 46rem;
                 }
 
-                #first-image {
-                    @include mixins.configImg(497px, 20px);
+                @include mixins.mediaQuerry(425px) {
+                    width: 36rem;
+                }
 
-                    @include mixins.mediaQuerry(768px) {
-                        width: 490px;
-                    }
+                @include mixins.mediaQuerry(375px) {
+                    width: 30rem;
+                }
 
-                    @include mixins.mediaQuerry(425px) {
-                        width: 360px;
-                    }
-
-                    @include mixins.mediaQuerry(375px) {
-                        width: 310px;
-                    }
-
-                    @include mixins.mediaQuerry(320px) {
-                        width: 260px;
-                    }
+                @include mixins.mediaQuerry(320px) {
+                    width: 26rem;
                 }
             }
 
@@ -73,133 +82,136 @@
                 @include mixins.displayFlex(flex, center, center);
 
                 img {
-                    @include mixins.configImg(300px, 20px);
-                    border-radius: 5px;
+                    @include mixins.configImg(30rem, 2rem);
+                    border-radius: 0.5rem;
 
                     @include mixins.mediaQuerry(425px) {
-                        width: 250px;
+                        width: 25rem;
                     }
 
                     @include mixins.mediaQuerry(375px) {
-                        width: 230px;
+                        width: 23rem;
                     }
 
                     @include mixins.mediaQuerry(320px) {
-                        width: 200px;
+                        width: 20rem;
                     }
                 }
             }
+        }
 
-            .result-message {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-                height: 10px;
+        .result-message {
+            margin-bottom: 2rem;
+            flex-direction: column;
+            gap: 0.2rem;
+            text-align: center;
+
+            p, span {
+                font-size: 2rem;
+                // margin-bottom: 1rem;
+
                 font-weight: bold;
-                text-align: center;
                 color: variables.$color-white;
 
                 @include mixins.mediaQuerry(425px) {
-                    font-size: 1.1rem;
+                    font-size: 1.5rem;
+                    // width: 80%;
+                }
+    
+                @include mixins.mediaQuerry(320px) {
+                    font-size: 1.4rem;
+                }
+            }
+
+            
+        }
+
+        .form {
+            @include mixins.configImg(100%, 2rem);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+            @include mixins.mediaQuerry(425px) {
+                width: 90%;
+            }
+
+            .input {
+                @include mixins.widthBorderRadiusFontSize(30%, 1.7rem, 0.3rem);
+                padding: 1rem;
+
+                outline: none;
+                border: none;
+
+                @include mixins.mediaQuerry(425px) {
+                    @include mixins.widthBorderRadiusFontSize(70%, 1.5rem, 0.3rem);
+                    padding: 0.9rem;
                 }
 
                 @include mixins.mediaQuerry(375px) {
-                    font-size: 1rem;
+                    font-size: 1.3rem;
+                }
+            }
+
+            .btn-enviar {
+                @include mixins.widthBorderRadiusFontSize(15%, 1.7rem, 0.3rem);
+
+                cursor: pointer;
+                border: none;
+                transition: 0.3s;
+                background-color: variables.$color-white;
+
+                @include mixins.mediaQuerry(425px) {
+                    width: 50%;
+                    font-size: 1.5rem;
+                }
+
+                @include mixins.mediaQuerry(375px) {
+                    font-size: 1.3rem;
+                    width: 40%;
+                }
+
+                &:hover {
+                    @include mixins.padraoHover(#000, variables.$color-white);
+                }
+            }
+        }
+
+        .container-btn {
+            width: 100%;
+            @include mixins.displayFlex(flex, center, center);
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            @include mixins.mediaQuerry(425px) {
+                width: 95%;
+            }
+
+            .btn {
+                @include mixins.widthBorderRadiusFontSize(20%, 1.7rem, 0.3rem);
+                @include mixins.padraoHover(variables.$color-white, #000);
+                display: flex;
+                justify-content: center;
+                padding: 0.5rem;
+
+                cursor: pointer;
+                border: none;
+                transition: 0.3s;
+
+                @include mixins.mediaQuerry(425px) {
+                    @include mixins.widthBorderRadiusFontSize(40%, 1.6rem, 0.3rem);
+                }
+
+                @include mixins.mediaQuerry(375px) {
+                    font-size: 1.5rem;
                 }
 
                 @include mixins.mediaQuerry(320px) {
-                    font-size: 0.9rem;
-                }
-            }
-
-            #form {
-                @include mixins.configImg(100%, 20px);
-                display: flex;
-                justify-content: center;
-                gap: 1rem;
-
-                @include mixins.mediaQuerry(425px) {
-                    width: 90%;
+                    font-size: 1.4rem;
                 }
 
-                input {
-                    @include mixins.widthBorderRadiusFontSize(30%, 1rem, 1px);
-                    padding: 10px;
-                    outline: none;
-                    border: none;
-
-                    @include mixins.mediaQuerry(425px) {
-                        width: 70%;
-                        padding: 9px;
-                    }
-
-                    @include mixins.mediaQuerry(425px) {
-                        padding: 8px;
-                        font-size: 0.9rem;
-                    }
-
-                    @include mixins.mediaQuerry(320px) {
-                        font-size: 0.8rem;
-                    }
-                }
-
-                button {
-                    @include mixins.widthBorderRadiusFontSize(15%, 1rem, 1px);
-                    cursor: pointer;
-                    border: none;
-                    transition: all .3s ease;
-                    background-color: variables.$color-white;
-
-                    @include mixins.mediaQuerry(425px) {
-                        width: 35%;
-                    }
-
-                    @include mixins.mediaQuerry(375px) {
-                        font-size: 0.9rem;
-                        padding: 2px;
-                    }
-
-                    @include mixins.mediaQuerry(320px) {
-                        font-size: 0.8rem;
-                    }
-
-                    &:hover {
-                        @include mixins.padraoHover(black, variables.$color-white);
-                    }
-                }
-            }
-
-            .container-btn {
-                width: 100%;
-                @include mixins.displayFlex(flex, center, center);
-                flex-wrap: wrap;
-                gap: 1rem;
-
-                @include mixins.mediaQuerry(425px) {
-                    width: 95%;
-                }
-
-                .btn {
-                    @include mixins.widthBorderRadiusFontSize(20%, 1.1rem, 1px);
-                    display: flex;
-                    justify-content: center;
-                    padding: 5px;
-                    cursor: pointer;
-                    border: none;
-                    transition: all .3s ease;
-                    @include mixins.padraoHover(variables.$color-white, black);
-
-                    @include mixins.mediaQuerry(425px) {
-                        width: 40%;
-                        font-size: 1rem;
-                    }
-
-                    @include mixins.mediaQuerry(375px) {
-                        font-size: 0.9rem;
-                    }
-
-                    &:hover {
-                        @include mixins.padraoHover(black, variables.$color-white);
-                    }
+                &:hover {
+                    @include mixins.padraoHover(#000, variables.$color-white);
                 }
             }
         }
